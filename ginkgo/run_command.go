@@ -193,8 +193,8 @@ func (r *SpecRunner) combineCoverprofiles(runners []*testrunner.TestRunner) erro
 		_, err = combined.Write(contents)
 
 		// Add a newline to the end of every file if missing.
-		if err == nil && !strings.HasSuffix(contents, "\n") {
-			_, err = combined.Write("\n")
+		if err == nil && contents[len(contents)-1] != '\n' {
+			_, err = combined.Write([]byte("\n"))
 		}
 
 		if err != nil {
